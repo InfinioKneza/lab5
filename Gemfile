@@ -68,3 +68,5 @@ group :development do
 end
 
 gem 'simple_form'
+
+gem "httparty"
