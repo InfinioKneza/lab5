@@ -14,12 +14,27 @@ class MonstersController < ApplicationController
     else
         render :new
     end
-
-  private
-  
-  def monster_params
-    params.permit(:name, :decription, :phone, :birthdate) #Preguntar el por que funciona con require
   end
 
+  def edit
+    @monster = Monster.find(params[:id])
+  end
+
+  def update
+    @monster = Monster.find(params[:id])
+    if @monster.update(monster_params_require)
+      redirect_to @monster, notice: "Se ha modificado el monstruo correctamente"
+    else 
+      render :edit
+    end
+  end
+  
+  private
+  def monster_params
+    params.permit(:name, :description, :phone, :birthdate) #Preguntar el por que funciona con require
+  end
+  def monster_params_require
+    params.require(:monster).permit(:name, :description, :phone, :birthdate)
+  end
 end 
-end
+

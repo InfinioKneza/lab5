@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :monsters, only: [:index, :new, :edit, :update]
+  resources :monsters
+
 
   post '/monsters/new', to: 'monsters#create'
   get '/monsters/:id/edit', to: 'monsters#edit'
